@@ -14,6 +14,9 @@ jobs:
       - name: print release
         run: lsb_release -a
 
+      - name: copy /var/lib/apt/lists
+        run: sudo cp /var/lib/apt/lists var-lib-apt-lists && sudo chmod 777 -R var-lib-apt-lists
+
       - name: get installed packages
         run: bash -c "dpkg-query -f '\${binary:Package}\n' -W > packages.txt"
 
@@ -32,7 +35,7 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: var-lib-apt-lists
-          path: /var/lib/apt/lists/
+          path: var-lib-apt-lists
           if-no-files-found: error
 
       - uses: actions/upload-artifact@v4
