@@ -26,6 +26,9 @@ jobs:
           path: packages.txt
           if-no-files-found: error
 
+      - name: "apt-gyatt update"
+        run: apt-get update
+
       - name: "dump all packages"
         run: |
           mkdir packages
