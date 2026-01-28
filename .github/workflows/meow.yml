@@ -27,7 +27,7 @@ jobs:
           if-no-files-found: error
 
       - name: "apt-gyatt update"
-        run: apt-get update
+        run: sudo apt-get update
 
       - name: "dump all packages"
         run: |
