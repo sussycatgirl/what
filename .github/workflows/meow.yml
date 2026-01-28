@@ -22,3 +22,15 @@ jobs:
           name: packages
           path: packages.txt
           if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sources.list
+          path: /etc/apt/sources.list
+          if-no-files-found: error
+
+      - uses: actions/upload-artifact@v4
+        with:
+          name: sources.list.d
+          path: /etc/apt/sources.list.d/*
+          if-no-files-found: error
