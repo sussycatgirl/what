@@ -26,20 +26,17 @@ jobs:
           path: packages.txt
           if-no-files-found: error
 
-      - uses: actions/upload-artifact@v4
-        with:
-          name: apt-conf
-          path: /etc/apt
-          if-no-files-found: error
+      - name: "dump all packages"
+        run: |
+          mkdir packages
+          cd packages
+          for package in $(dpkg-query -f '${binary:Package}\n' -W); do
+            apt-get download "$package"
+          done
+          cd ..
 
       - uses: actions/upload-artifact@v4
         with:
-          name: var-lib-apt-lists
-          path: var-lib-apt-lists
-          if-no-files-found: error
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: keyrings
-          path: /usr/share/keyrings
+          name: packages
+          path: packages
           if-no-files-found: error
