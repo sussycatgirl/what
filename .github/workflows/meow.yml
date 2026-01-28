@@ -11,7 +11,8 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      #- uses: actions/checkout@v4
+      - name: print release
+        run: lsb_release -a
 
       - name: get installed packages
         run: bash -c "dpkg-query -f '\${binary:Package}\n' -W > packages.txt"
