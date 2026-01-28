@@ -15,7 +15,7 @@ jobs:
         run: lsb_release -a
 
       - name: copy /var/lib/apt/lists
-        run: sudo cp /var/lib/apt/lists var-lib-apt-lists && sudo chmod 777 -R var-lib-apt-lists
+        run: sudo cp -r /var/lib/apt/lists var-lib-apt-lists && sudo chmod 777 -R var-lib-apt-lists
 
       - name: get installed packages
         run: bash -c "dpkg-query -f '\${binary:Package}\n' -W > packages.txt"
