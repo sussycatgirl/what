@@ -22,7 +22,7 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: packages
+          name: package-list
           path: packages.txt
           if-no-files-found: error
 
