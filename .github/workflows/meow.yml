@@ -25,12 +25,6 @@ jobs:
 
       - uses: actions/upload-artifact@v4
         with:
-          name: sources.list
-          path: /etc/apt/sources.list
-          if-no-files-found: error
-
-      - uses: actions/upload-artifact@v4
-        with:
-          name: sources.list.d
-          path: /etc/apt/sources.list.d/*
+          name: apt-conf
+          path: /etc/apt
           if-no-files-found: error
