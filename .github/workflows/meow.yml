@@ -1,0 +1,31 @@
+name: meow
+
+on:
+  push:
+    branches: [ "main" ]
+
+  workflow_dispatch:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      #- uses: actions/checkout@v4
+
+      - name: print installed packages
+        run: apt list --installed
+
+      - name: print available binaries
+        run: |
+          IFS=:
+          for dir in $PATH
+          do
+              for file in $dir/*
+              do
+                  if [ -x $file ]
+                  then
+                      echo $file
+                  fi
+              done
+          done
