@@ -13,19 +13,11 @@ jobs:
     steps:
       #- uses: actions/checkout@v4
 
-      - name: print installed packages
-        run: apt list --installed
+      - name: get installed packages
+        run: bash -c "dpkg-query -f '${binary:Package}\n' -W > packages.txt"
 
-      - name: print available binaries
-        run: |
-          IFS=:
-          for dir in $PATH
-          do
-              for file in $dir/*
-              do
-                  if [ -x $file ]
-                  then
-                      echo $file
-                  fi
-              done
-          done
+      - uses: actions/upload-artifact@v4
+        with:
+          name: packages
+          path: packages.txt
+          if-no-files-found: error
