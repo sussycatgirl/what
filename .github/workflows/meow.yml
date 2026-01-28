@@ -34,7 +34,7 @@ jobs:
           mkdir packages
           cd packages
           for package in $(dpkg-query -f '${binary:Package}\n' -W | cut -f1 -d":"); do
-            apt-get download "$package"
+            dpkg-repack "$package"
           done
           cd ..
 
